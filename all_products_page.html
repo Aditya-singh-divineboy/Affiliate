@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Affiliate Products by Category – Latest Deals</title>
+    <link rel="stylesheet" href="nav.css">
+    <meta name="description" content="Browse top affiliate deals by category - Electronics, Fitness, Fashion, Beauty, and Home products handpicked for you.">
+    <style>
+        :root {
+            --russian-violet: #10002bff;
+            --russian-violet-2: #240046ff;
+            --persian-indigo: #3c096cff;
+            --tekhelet: #5a189aff;
+            --french-violet: #7b2cbfff;
+            --amethyst: #9d4eddff;
+            --heliotrope: #c77dffff;
+            --mauve: #e0aaffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, var(--russian-violet) 0%, var(--russian-violet-2) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .page-header {
+            /* background: linear-gradient(135deg, var(--russian-violet), var(--persian-indigo)); */
+            background: url('other-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        /* .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        } */
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+            color: black;
+        }
+
+        .breadcrumbs a {
+            color: var(--persian-indigo);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumbs a:hover {
+            color: var(--mauve);
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #000;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+             color: #000;
+        }
+
+        /* Jump to Category Menu */
+        .jump-menu {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--french-violet);
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .jump-menu select {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .jump-menu select option {
+            background: var(--french-violet);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 80px;
+            scroll-margin-top: 100px;
+        }
+
+        .category-section:nth-child(even) {
+            background: linear-gradient(135deg, rgba(224, 170, 255, 0.1), rgba(199, 125, 255, 0.1));
+            padding: 40px 0;
+            border-radius: 20px;
+            margin: 80px 0;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--russian-violet);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--tekhelet), var(--amethyst));
+            border-radius: 2px;
+        }
+
+        .category-description {
+            color: var(--persian-indigo);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(157, 78, 221, 0.3);
+        }
+
+        .product-card.featured {
+            border: 2px solid var(--amethyst);
+            position: relative;
+        }
+
+        .product-card.featured::before {
+            content: 'FEATURED';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--amethyst);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--russian-violet);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .stars {
+            color: #ffd700;
+            margin-right: 8px;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--tekhelet);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 10px;
+            font-size: 1rem;
+        }
+
+        .discount-badge {
+            background: linear-gradient(45deg, #ff4757, #ff3742);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .buy-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--tekhelet), var(--amethyst));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .buy-button:hover {
+            background: linear-gradient(135deg, var(--amethyst), var(--heliotrope));
+            transform: scale(1.05);
+        }
+
+        /* View All Button */
+        .view-all-container {
+            text-align: center;
+        }
+
+        .view-all-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--french-violet), var(--amethyst));
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(123, 44, 191, 0.3);
+        }
+
+        .view-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(123, 44, 191, 0.4);
+        }
+
+        .view-all-btn::after {
+            content: '→';
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .view-all-btn:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--tekhelet), var(--amethyst));
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            box-shadow: 0 8px 24px rgba(90, 24, 154, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(90, 24, 154, 0.4);
+        }
+
+        /* Section Filters */
+        .section-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--mauve);
+            color: var(--russian-violet);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--amethyst);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .category-title {
+                font-size: 2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .jump-menu {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 20px auto;
+                display: block;
+                width: fit-content;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Loading Animation */
+        .product-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "All Affiliate Products by Category",
+        "description": "Browse top affiliate deals by category - Electronics, Fitness, Fashion, Beauty, and Home products handpicked for you.",
+        "url": "https://example.com/products",
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://example.com"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Products",
+                    "item": "https://example.com/products"
+                }
+            ]
+        }
+    }
+    </script>
+</head>
+<body>
+<nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">DealHub</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="all_products_page.html" class="nav-link">Products</a></li>
+                <li><a href="affiliate_category_page.html" class="nav-link">Categories</a></li>
+                <li><a href="comparison_charts_page.html" class="nav-link">Comparison</a></li>
+                <li><a href="blog_page.html" class="nav-link">Blog</a></li>
+                <li><a href="contact_page.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Jump to Category Menu -->
+    <div class="jump-menu">
+        <select id="categoryJump" onchange="jumpToCategory(this.value)">
+            <option value="">Jump to Category</option>
+            <option value="electronics">Electronics</option>
+            <option value="fitness">Fitness</option>
+            <option value="fashion">Fashion</option>
+            <option value="beauty">Beauty</option>
+            <option value="home">Home & Living</option>
+        </select>
+    </div>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <nav class="breadcrumbs">
+                <a href="index.html">Home</a> > Products
+            </nav>
+            <h1 class="page-title">Explore All Products</h1>
+            <p class="page-subtitle">Browse top deals by category – handpicked for you.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Electronics Section -->
+        <section id="electronics" class="category-section">
+            <div class="container">
+                <div class="category-header">
+                    <h2 class="category-title">Electronics</h2>
+                    <p class="category-description">Latest tech gadgets and electronic devices at unbeatable prices</p>
+                </div>
+
+                <div class="section-filters">
+                    <button class="filter-btn active" onclick="filterProducts('electronics', 'all')">All</button>
+                    <button class="filter-btn" onclick="filterProducts('electronics', 'rating')">Top Rated</button>
+                    <button class="filter-btn" onclick="filterProducts('electronics', 'price')">Best Price</button>
+                </div>
+
+                <div class="product-grid" id="electronics-grid">
+                    <!-- Featured Product -->
+                    <div class="product-card featured" itemscope itemtype="https://schema.org/Product">
+                        <img src="Wireless Headphones.jpg" alt="Wireless Headphones" class="product-image" itemprop="image">
+                        <div class="product-info">
+                            <h3 class="product-title" itemprop="name">Premium Wireless Headphones</h3>
+                            <div class="product-rating" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text" itemprop="ratingValue">4.8</span>
+                            </div>
+                            <div class="product-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span class="current-price" itemprop="price">$89.99</span>
+                                <span class="original-price">$149.99</span>
+                                <span class="discount-badge">40% OFF</span>
+                                <meta itemprop="availability" content="https://schema.org/InStock">
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop" alt="Smartphone" class="product-image" itemprop="image">
+                        <div class="product-info">
+                            <h3 class="product-title" itemprop="name">Latest Smartphone Pro</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.6</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$699.99</span>
+                                <span class="original-price">$899.99</span>
+                                <span class="discount-badge">22% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=400&h=300&fit=crop" alt="Laptop" class="product-image" itemprop="image">
+                        <div class="product-info">
+                            <h3 class="product-title" itemprop="name">Ultra-Thin Gaming Laptop</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$1,299.99</span>
+                                <span class="original-price">$1,699.99</span>
+                                <span class="discount-badge">24% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" itemscope itemtype="https://schema.org/Product">
+                        <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=300&fit=crop" alt="Smart Watch" class="product-image" itemprop="image">
+                        <div class="product-info">
+                            <h3 class="product-title" itemprop="name">Fitness Smart Watch</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.4</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$199.99</span>
+                                <span class="original-price">$299.99</span>
+                                <span class="discount-badge">33% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-all-container">
+                    <a href="electronics_category_page.html" class="view-all-btn">View All Electronics</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Beauty Section -->
+        <section id="beauty" class="category-section">
+            <div class="container">
+                <div class="category-header">
+                    <h2 class="category-title">Beauty</h2>
+                    <p class="category-description">Enhance your natural beauty with premium skincare and cosmetics</p>
+                </div>
+
+                <div class="section-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Top Rated</button>
+                    <button class="filter-btn">Best Price</button>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-card featured">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=300&fit=crop" alt="Skincare Set" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Anti-Aging Skincare Set</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$89.99</span>
+                                <span class="original-price">$149.99</span>
+                                <span class="discount-badge">40% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=300&fit=crop" alt="Makeup Palette" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Professional Makeup Palette</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.7</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$59.99</span>
+                                <span class="original-price">$89.99</span>
+                                <span class="discount-badge">33% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&h=300&fit=crop" alt="Hair Care" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Premium Hair Care Kit</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.8</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$49.99</span>
+                                <span class="original-price">$79.99</span>
+                                <span class="discount-badge">38% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?w=400&h=300&fit=crop" alt="Perfume" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Luxury Perfume Collection</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.6</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$119.99</span>
+                                <span class="original-price">$179.99</span>
+                                <span class="discount-badge">33% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-all-container">
+                    <a href="/category/beauty" class="view-all-btn">View All Beauty</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Home & Living Section -->
+        <section id="home" class="category-section">
+            <div class="container">
+                <div class="category-header">
+                    <h2 class="category-title">Home & Living</h2>
+                    <p class="category-description">Transform your space with stylish and functional home essentials</p>
+                </div>
+
+                <div class="section-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Top Rated</button>
+                    <button class="filter-btn">Best Price</button>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-card featured">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop" alt="Smart Home Hub" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Smart Home Hub System</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.8</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$199.99</span>
+                                <span class="original-price">$299.99</span>
+                                <span class="discount-badge">33% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop" alt="Kitchen Appliance" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Multi-Function Kitchen Appliance</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.5</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$149.99</span>
+                                <span class="original-price">$229.99</span>
+                                <span class="discount-badge">35% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1586772002019-b9c6b8e99e14?w=400&h=300&fit=crop" alt="Bedding Set" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Luxury Bedding Set</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$79.99</span>
+                                <span class="original-price">$129.99</span>
+                                <span class="discount-badge">38% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Decorative Lamp" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Modern Table Lamp</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.6</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$89.99</span>
+                                <span class="original-price">$139.99</span>
+                                <span class="discount-badge">36% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-all-container">
+                    <a href="/category/home" class="view-all-btn">View All Home & Living</a>
+                </div>
+            </div>
+        </section>
+
+       
+
+                
+        
+               
+
+        <!-- Fitness Section -->
+        <section id="fitness" class="category-section">
+            <div class="container">
+                <div class="category-header">
+                    <h2 class="category-title">Fitness</h2>
+                    <p class="category-description">Get fit with our premium selection of workout gear and supplements</p>
+                </div>
+
+                <div class="section-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Top Rated</button>
+                    <button class="filter-btn">Best Price</button>
+                </div>
+
+                <div class="product-grid">
+                    <!-- Featured Product -->
+                    <div class="product-card featured">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" alt="Adjustable Dumbbells" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Adjustable Dumbbell Set</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$299.99</span>
+                                <span class="original-price">$449.99</span>
+                                <span class="discount-badge">33% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=300&fit=crop" alt="Yoga Mat" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Premium Yoga Mat</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.7</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$39.99</span>
+                                <span class="original-price">$59.99</span>
+                                <span class="discount-badge">33% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=400&h=300&fit=crop" alt="Resistance Bands" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Resistance Band Set</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.8</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$24.99</span>
+                                <span class="original-price">$39.99</span>
+                                <span class="discount-badge">38% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=400&h=300&fit=crop" alt="Protein Powder" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Whey Protein Powder</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.5</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$49.99</span>
+                                <span class="original-price">$69.99</span>
+                                <span class="discount-badge">29% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-all-container">
+                    <a href="/category/fitness" class="view-all-btn">View All Fitness</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fashion Section -->
+        <section id="fashion" class="category-section">
+            <div class="container">
+                <div class="category-header">
+                    <h2 class="category-title">Fashion</h2>
+                    <p class="category-description">Stay trendy with our curated fashion collection for every style</p>
+                </div>
+
+                <div class="section-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Top Rated</button>
+                    <button class="filter-btn">Best Price</button>
+                </div>
+
+                <div class="product-grid">
+                    <div class="product-card featured">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop" alt="Designer Dress" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Designer Summer Dress</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.8</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$89.99</span>
+                                <span class="original-price">$149.99</span>
+                                <span class="discount-badge">40% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=400&h=300&fit=crop" alt="Sneakers" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Premium Running Sneakers</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.6</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$129.99</span>
+                                <span class="original-price">$179.99</span>
+                                <span class="discount-badge">28% OFF</span>
+                            </div>
+                            <button class="buy-button">View Deal</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop" alt="Handbag" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Luxury Leather Handbag</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★★</div>
+                                <span class="rating-text">4.9</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$199.99</span>
+                                <span class="original-price">$299.99</span>
+                                <span class="discount-badge">33% OFF</span>
+                            </div>
+                            <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=300&fit=crop" alt="Sunglasses" class="product-image">
+                        <div class="product-info">
+                            <h3 class="product-title">Designer Sunglasses</h3>
+                            <div class="product-rating">
+                                <div class="stars">★★★★☆</div>
+                                <span class="rating-text">4.4</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="current-price">$79.99</span>
+                                <span class="original-price">$129.99</span>
+                                <span class="discount-badge">38% OFF</span>
+                            </div>
+                             <button class="buy-button">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                            
+    </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <footer id="footer"></footer>
+
+    <script>
+
+         // insert footer
+        fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+      
+        // Back to Top Button Functionality
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Jump to Category Functionality
+        function jumpToCategory(category) {
+            if (category) {
+                const element = document.getElementById(category);
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        }
+
+        // Filter Products Functionality
+        function filterProducts(category, filter) {
+            // Remove active class from all filter buttons in the section
+            const section = document.getElementById(category);
+            const filterButtons = section.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // In a real implementation, this would filter/sort the products
+            // For demo purposes, we'll just show an animation
+            const productGrid = section.querySelector('.product-grid');
+            productGrid.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                productGrid.style.opacity = '1';
+            }, 300);
+        }
+
+        // Track Click Analytics (for affiliate tracking)
+        function trackClick(category, product) {
+            // In a real implementation, this would send analytics data
+            console.log(`Clicked: ${category} - ${product}`);
+            
+            // Example: Send to analytics service
+            // gtag('event', 'click', {
+            //     'event_category': 'affiliate_link',
+            //     'event_label': `${category}_${product}`,
+            //     'value': 1
+            // });
+        }
+
+        // Lazy Loading for Images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.style.opacity = '1';
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.product-image').forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+                imageObserver.observe(img);
+                
+                img.addEventListener('load', () => {
+                    img.style.opacity = '1';
+                });
+            });
+        }
+
+        // Smooth reveal animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all product cards for animation
+        document.querySelectorAll('.product-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add click handlers for buy buttons
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = (e.offsetX - 10) + 'px';
+                ripple.style.top = (e.offsetY - 10) + 'px';
+                ripple.style.width = ripple.style.height = '20px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Performance optimization: Debounce scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Optimize scroll performance
+        const optimizedScroll = debounce(() => {
+            // Scroll-related optimizations can be added here
+        }, 16);
+
+        window.addEventListener('scroll', optimizedScroll);
+    </script>
+</body>
+</html
+                      
+
+                   
+
+        

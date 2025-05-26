@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse by Category - Premium Affiliate Products</title>
+    <link rel="stylesheet" href="nav.css">
+    <meta name="description" content="Explore top affiliate products by category. Find the best deals in Electronics, Fashion, Fitness, Home, Beauty, Travel and more.">
+    <style>
+        :root {
+            --russian-violet: #10002b;
+            --russian-violet-2: #240046;
+            --persian-indigo: #3c096c;
+            --tekhelet: #5a189a;
+            --french-violet: #7b2cbf;
+            --amethyst: #9d4edd;
+            --heliotrope: #c77dff;
+            --mauve: #e0aaff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--heliotrope) 0%, var(--mauve) 100%);
+            color: white;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--persian-indigo), var(--tekhelet));
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: .5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--mauve);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--mauve);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color:  var(--amethyst);
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            max-width: 1400px;
+            margin: 0 auto;
+            margin-top: 80px;
+            padding: .5rem .5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--tekhelet);
+        }
+
+        .breadcrumbs a {
+            color: var(--persian-indigo);
+            text-decoration: none;
+        }
+
+        .breadcrumbs span {
+            color: rgb(255, 255, 255);
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            width: 100%;
+            height: 300px;
+            text-align: center;
+            margin: 1rem 0;
+            background: url('other-hero.jpg');
+            background-size: cover;
+            background-position: top;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--persian-indigo), var(--french-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-align: left;
+            padding-left: 100px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: rgba(0, 0, 0, 0.8);
+            max-width: 600px;
+             text-align: left;
+            padding-left: 100px;
+        }
+
+        /* Filter Sidebar */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .filters-sidebar {
+            background: linear-gradient(135deg, var(--persian-indigo), var(--tekhelet));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 120px;
+        }
+
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--heliotrope);
+            margin-bottom: 1rem;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .filter-option:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .filter-option input {
+            accent-color: var(--heliotrope);
+        }
+
+        .price-range {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .price-input {
+            width: 45%;
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        /* Category Grid */
+        .categories-section {
+            flex: 1;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+             background: linear-gradient(135deg, var(--persian-indigo), var(--tekhelet));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        } */
+
+        .category-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--heliotrope);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.3);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--heliotrope), var(--mauve));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .category-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .item-count {
+            font-size: 0.9rem;
+            color: var(--heliotrope);
+            font-weight: 600;
+        }
+
+        .trending-badge {
+            background: linear-gradient(45deg, var(--french-violet), var(--amethyst));
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Featured Sections */
+        .featured-section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+           background: linear-gradient(135deg, var(--persian-indigo), var(--tekhelet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .featured-item {
+            background: linear-gradient(135deg, var(--persian-indigo), var(--tekhelet));
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-filters-toggle {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(45deg, var(--french-violet), var(--amethyst));
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(123, 44, 191, 0.4);
+            z-index: 1000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .filters-sidebar {
+                position: static;
+                display: none;
+            }
+
+            .filters-sidebar.active {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1001;
+                background: var(--russian-violet-2);
+                border-radius: 0;
+                padding: 2rem;
+                overflow-y: auto;
+            }
+
+            .mobile-filters-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .main-container {
+                padding: 0 1rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .category-card {
+                padding: 1.5rem;
+            }
+
+            .page-header {
+                margin: 2rem 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .category-card:nth-child(1) { animation-delay: 0.1s; }
+        .category-card:nth-child(2) { animation-delay: 0.2s; }
+        .category-card:nth-child(3) { animation-delay: 0.3s; }
+        .category-card:nth-child(4) { animation-delay: 0.4s; }
+        .category-card:nth-child(5) { animation-delay: 0.5s; }
+        .category-card:nth-child(6) { animation-delay: 0.6s; }
+        .category-card:nth-child(7) { animation-delay: 0.7s; }
+        .category-card:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">DealHub</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="all_products_page.html" class="nav-link">Products</a></li>
+                <li><a href="affiliate_category_page.html" class="nav-link">Categories</a></li>
+                <li><a href="comparison_charts_page.html" class="nav-link">Comparison</a></li>
+                <li><a href="blog_page.html" class="nav-link">Blog</a></li>
+                <li><a href="contact_page.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span>></span>
+        <span>Categories</span>
+    </div>
+    <!-- Page Header -->
+    <section class="page-header">
+            <h1 class="page-title">Browse by Category</h1>
+            <p class="page-subtitle">Explore top products by interest and category. Find the perfect deals tailored to your needs.</p>
+        </section>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        
+        
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Filters Sidebar -->
+            <aside class="filters-sidebar" id="filtersSidebar">
+                <div class="filter-group">
+                    <h3 class="filter-title">Price Range</h3>
+                    <div class="price-range">
+                        <input type="number" class="price-input" placeholder="Min" min="0">
+                        <input type="number" class="price-input" placeholder="Max" min="0">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Rating</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox"> ⭐⭐⭐⭐⭐ 5 Stars
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox"> ⭐⭐⭐⭐ 4+ Stars
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox"> ⭐⭐⭐ 3+ Stars
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Availability</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox"> In Stock
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox"> On Sale
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox"> Free Shipping
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3 class="filter-title">Discount</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox"> 50% or more
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox"> 25% or more
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox"> 10% or more
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Categories Section -->
+            <section class="categories-section">
+                <div class="categories-grid">
+                    <div class="category-card" onclick="navigateToCategory('electronics')">
+                        <div class="category-icon">💻</div>
+                        <h3 class="category-name">Electronics</h3>
+                        <p class="category-description">Latest gadgets, smartphones, laptops, and tech accessories</p>
+                        <div class="category-stats">
+                            <span class="item-count">150+ Items</span>
+                            <span class="trending-badge">🔥 Hot</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="navigateToCategory('fitness')">
+                        <div class="category-icon">💪</div>
+                        <h3 class="category-name">Fitness & Health</h3>
+                        <p class="category-description">Workout equipment, supplements, and wellness products</p>
+                        <div class="category-stats">
+                            <span class="item-count">85+ Items</span>
+                            <span class="trending-badge">📈 Trending</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="navigateToCategory('fashion')">
+                        <div class="category-icon">👗</div>
+                        <h3 class="category-name">Fashion & Style</h3>
+                        <p class="category-description">Clothing, accessories, shoes, and fashion essentials</p>
+                        <div class="category-stats">
+                            <span class="item-count">200+ Items</span>
+                            <span class="trending-badge">✨ New</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="navigateToCategory('home')">
+                        <div class="category-icon">🏠</div>
+                        <h3 class="category-name">Home & Living</h3>
+                        <p class="category-description">Furniture, decor, kitchen appliances, and home essentials</p>
+                        <div class="category-stats">
+                            <span class="item-count">120+ Items</span>
+                            <span class="trending-badge">💫 Popular</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="navigateToCategory('beauty')">
+                        <div class="category-icon">💄</div>
+                        <h3 class="category-name">Beauty & Care</h3>
+                        <p class="category-description">Skincare, makeup, haircare, and personal care products</p>
+                        <div class="category-stats">
+                            <span class="item-count">95+ Items</span>
+                            <span class="trending-badge">🌟 Featured</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="navigateToCategory('travel')">
+                        <div class="category-icon">✈️</div>
+                        <h3 class="category-name">Travel & Outdoor</h3>
+                        <p class="category-description">Luggage, camping gear, travel accessories, and outdoor equipment</p>
+                        <div class="category-stats">
+                            <span class="item-count">60+ Items</span>
+                            <span class="trending-badge">🎒 Adventure</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="navigateToCategory('books')">
+                        <div class="category-icon">📚</div>
+                        <h3 class="category-name">Books & Education</h3>
+                        <p class="category-description">E-books, courses, educational materials, and learning resources</p>
+                        <div class="category-stats">
+                            <span class="item-count">75+ Items</span>
+                            <span class="trending-badge">🧠 Learn</span>
+                        </div>
+                    </div>
+
+                    <div class="category-card" onclick="navigateToCategory('automotive')">
+                        <div class="category-icon">🚗</div>
+                        <h3 class="category-name">Automotive</h3>
+                        <p class="category-description">Car accessories, tools, maintenance products, and auto care</p>
+                        <div class="category-stats">
+                            <span class="item-count">45+ Items</span>
+                            <span class="trending-badge">🔧 Tools</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Top Rated Section -->
+        <section class="featured-section">
+            <h2 class="section-title">Top Rated in All Categories</h2>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <div class="category-icon">⭐</div>
+                    <h4>Premium Wireless Headphones</h4>
+                    <p>4.9/5 Rating • Electronics</p>
+                </div>
+                <div class="featured-item">
+                    <div class="category-icon">⭐</div>
+                    <h4>Organic Protein Powder</h4>
+                    <p>4.8/5 Rating • Fitness</p>
+                </div>
+                <div class="featured-item">
+                    <div class="category-icon">⭐</div>
+                    <h4>Designer Handbag</h4>
+                    <p>4.9/5 Rating • Fashion</p>
+                </div>
+                <div class="featured-item">
+                    <div class="category-icon">⭐</div>
+                    <h4>Smart Home Assistant</h4>
+                    <p>4.7/5 Rating • Home</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Editor's Picks Section -->
+        <section class="featured-section">
+            <h2 class="section-title">Editor's Picks</h2>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <div class="category-icon">👑</div>
+                    <h4>Ultra-Fast Gaming Laptop</h4>
+                    <p>Editor's Choice • Electronics</p>
+                </div>
+                <div class="featured-item">
+                    <div class="category-icon">👑</div>
+                    <h4>Luxury Skincare Set</h4>
+                    <p>Editor's Choice • Beauty</p>
+                </div>
+                <div class="featured-item">
+                    <div class="category-icon">👑</div>
+                    <h4>Professional Yoga Mat</h4>
+                    <p>Editor's Choice • Fitness</p>
+                </div>
+                <div class="featured-item">
+                    <div class="category-icon">👑</div>
+                    <h4>Smart Coffee Maker</h4>
+                    <p>Editor's Choice • Home</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mobile Filters Toggle -->
+    <button class="mobile-filters-toggle" onclick="toggleFilters()">
+        🔍
+    </button>
+
+    <footer id="footer"></footer>
+
+    <script>
+
+         // insert footer
+        fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+
+      
+        // Category navigation function
+        function navigateToCategory(categoryName) {
+            // Update URL and navigate to category page
+            const url = `/category/${categoryName}`;
+            // window.history.pushState({category: categoryName}, '', url);
+
+            if(url=="/category/electronics"){
+                let newUrl = 'http://127.0.0.1:5500/electronics_category_page.html'
+                 document.location.href = newUrl;
+            }
+            
+            // Show loading state
+            console.log(`Navigating to ${categoryName} category...`);
+            
+            // In a real application, this would load the category page
+            // For demo purposes, we'll show an alert
+        }
+
+        // Mobile filters toggle
+        function toggleFilters() {
+            const sidebar = document.getElementById('filtersSidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.category) {
+                console.log('Navigating back to category:', event.state.category);
+            }
+        });
+
+        // Close mobile filters when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('filtersSidebar');
+            const toggle = document.querySelector('.mobile-filters-toggle');
+            
+            if (sidebar.classList.contains('active') && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Dynamic meta tags update (for SEO)
+        function updateMetaTags(category) {
+            document.title = `${category.charAt(0).toUpperCase() + category.slice(1)} - Premium Affiliate Products`;
+            
+            let metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription) {
+                metaDescription.content = `Shop the best ${category} products. Find top deals, reviews, and recommendations for ${category} items.`;
+            }
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-option input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                // In a real application, this would filter the categories
+                console.log('Filter changed:', this.parentElement.textContent.trim());
+            });
+        });
+
+        // Price range inputs
+        document.querySelectorAll('.price-input').forEach(input => {
+            input.addEventListener('input', function() {
+                // In a real application, this would update price filters
+                console.log('Price filter updated:', this.value);
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all category cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

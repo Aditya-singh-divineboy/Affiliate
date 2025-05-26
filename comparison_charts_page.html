@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Products - Find Your Perfect Match</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="nav.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --russian-violet: #10002bff;
+            --russian-violet-2: #240046ff;
+            --persian-indigo: #3c096cff;
+            --tekhelet: #5a189aff;
+            --french-violet: #7b2cbfff;
+            --amethyst: #9d4eddff;
+            --heliotrope: #c77dffff;
+            --mauve: #e0aaffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* background: linear-gradient(135deg, var(--russian-violet) 0%, var(--persian-indigo) 100%); */
+            color: white;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Section */
+        .header-banner {
+            text-align: center;
+            padding: 80px 20px;
+            /* background: linear-gradient(135deg, var(--russian-violet-2) 0%, var(--tekhelet) 50%, var(--french-violet) 100%); */
+            position: relative;
+            overflow: hidden;
+             background: url('other-hero.jpg');
+            background-size: cover;
+            background-position: top;
+        }
+
+        /* .header-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        } */
+
+        .header-banner h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--russian-violet-2);
+            position: relative;
+            z-index: 1;
+            text-align: left;
+            padding-left: 100px;
+        }
+
+        .header-banner p {
+            font-size: 1.3rem;
+            color: var(--russian-violet-2);
+            max-width: 600px;
+           padding-left: 100px;
+           text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Filter Panel */
+        .filter-panel {
+            background: rgba(36, 0, 70, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            margin: 40px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--persian-indigo);
+            box-shadow: 0 20px 40px rgba(16, 0, 43, 0.5);
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-size: 0.9rem;
+            color: var(--heliotrope);
+            font-weight: 600;
+        }
+
+        .filter-select, .filter-input {
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 2px solid var(--persian-indigo);
+            background: var(--russian-violet-2);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            min-width: 180px;
+        }
+
+        .filter-select:focus, .filter-input:focus {
+            outline: none;
+            border-color: var(--amethyst);
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .add-product-btn {
+            background: linear-gradient(45deg, var(--french-violet), var(--amethyst));
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-product-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.4);
+        }
+
+        /* Comparison Table */
+        .comparison-container {
+            margin: 40px 20px;
+            background: rgba(36, 0, 70, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--persian-indigo);
+            box-shadow: 0 20px 40px rgba(16, 0, 43, 0.5);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--persian-indigo);
+            transition: all 0.3s ease;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--russian-violet-2), var(--persian-indigo));
+            font-weight: 700;
+            color: var(--heliotrope);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .comparison-table th:first-child,
+        .comparison-table td:first-child {
+            position: sticky;
+            left: 0;
+            background: var(--russian-violet-2);
+            z-index: 5;
+            font-weight: 600;
+            text-align: left;
+            border-right: 2px solid var(--persian-indigo);
+        }
+
+        .product-header {
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--tekhelet), var(--french-violet));
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--amethyst), var(--heliotrope));
+            border-radius: 15px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .product-rating {
+            display: flex;
+            justify-content: center;
+            gap: 2px;
+            margin-bottom: 15px;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        .product-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--french-violet), var(--amethyst));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--heliotrope);
+            border: 2px solid var(--heliotrope);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--mauve);
+        }
+
+        .spec-highlight {
+            background: linear-gradient(45deg, var(--amethyst), var(--heliotrope));
+            padding: 5px 10px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .spec-icon {
+            margin-right: 8px;
+            color: var(--heliotrope);
+        }
+
+        /* Summary Cards */
+        .summary-section {
+            margin: 60px 20px;
+        }
+
+        .summary-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--russian-violet-2);
+        }
+        .summary-color{
+           color: var(--mauve); 
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, var(--russian-violet-2), var(--persian-indigo));
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--tekhelet);
+            box-shadow: 0 20px 40px rgba(16, 0, 43, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, var(--french-violet), var(--amethyst));
+        }
+
+        .summary-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(16, 0, 43, 0.5);
+        }
+
+        .summary-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--heliotrope);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-card p {
+            color: var(--mauve);
+            margin-bottom: 20px;
+        }
+
+        /* Visual Charts */
+        .charts-section {
+            margin: 60px 20px;
+            background: rgba(36, 0, 70, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--persian-indigo);
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            background: rgba(16, 0, 43, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .chart-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--heliotrope);
+            text-align: center;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bar-label {
+            width: 120px;
+            font-weight: 600;
+            color: var(--mauve);
+        }
+
+        .bar-container {
+            flex: 1;
+            background: var(--russian-violet-2);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 30px;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            padding-right: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 60px 20px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+           color: var(--russian-violet-2);
+        }
+
+        .faq-item {
+            background: rgba(36, 0, 70, 0.9);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--persian-indigo);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--heliotrope);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(157, 78, 221, 0.1);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--mauve);
+        }
+
+        .faq-answer.active {
+            padding: 25px;
+            max-height: 200px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Affiliate Notice */
+        .affiliate-notice {
+            background: rgba(16, 0, 43, 0.8);
+            padding: 20px;
+            margin: 40px 20px;
+            border-radius: 15px;
+            border: 1px solid var(--persian-indigo);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--mauve);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 15px 10px;
+            }
+
+            .product-buttons {
+                flex-direction: column;
+            }
+
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .bar-label {
+                width: 80px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-bars {
+            animation: slideIn 1s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">DealHub</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="all_products_page.html" class="nav-link">Products</a></li>
+                <li><a href="affiliate_category_page.html" class="nav-link">Categories</a></li>
+                <li><a href="comparison_charts_page.html" class="nav-link">Comparison</a></li>
+                <li><a href="blog_page.html" class="nav-link">Blog</a></li>
+                <li><a href="contact_page.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <div class="header-banner">
+        <h1>Compare Products</h1>
+        <p>Choose the best by comparing key features, prices, and performance side by side</p>
+    </div>
+
+    <!-- Filter Panel -->
+    <div class="filter-panel fade-in">
+        <div class="filter-row">
+            <div class="filter-group">
+                <label>Category</label>
+                <select class="filter-select" id="categorySelect">
+                    <option value="smartphones">Smartphones</option>
+                    <option value="laptops">Laptops</option>
+                    <option value="smartwatches">Smartwatches</option>
+                    <option value="headphones">Headphones</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Add Product</label>
+                <select class="filter-select" id="productSelect">
+                    <option value="">Select a product...</option>
+                    <option value="iphone15">iPhone 15 Pro</option>
+                    <option value="galaxy24">Galaxy S24 Ultra</option>
+                    <option value="pixel8">Pixel 8 Pro</option>
+                    <option value="oneplus12">OnePlus 12</option>
+                </select>
+            </div>
+            <button class="add-product-btn" id="addProductBtn">
+                <i class="fas fa-plus"></i>
+                Add Product
+            </button>
+        </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="comparison-container fade-in">
+        <div class="table-wrapper">
+            <table class="comparison-table" id="comparisonTable">
+                <thead>
+                    <tr id="tableHeader">
+                        <th>Features</th>
+                        <th class="product-header">
+                            <div class="product-image"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="product-name">iPhone 15 Pro</div>
+                            <div class="product-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span style="color: var(--mauve); margin-left: 5px;">4.8/5</span>
+                            </div>
+                            <div class="product-buttons">
+                                <a href="#" class="btn btn-primary">Buy Now - $999</a>
+                                <a href="#" class="btn btn-secondary">View Details</a>
+                            </div>
+                        </th>
+                        <th class="product-header">
+                            <div class="product-image"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="product-name">Galaxy S24 Ultra</div>
+                            <div class="product-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span style="color: var(--mauve); margin-left: 5px;">4.7/5</span>
+                            </div>
+                            <div class="product-buttons">
+                                <a href="#" class="btn btn-primary">Buy Now - $1,199</a>
+                                <a href="#" class="btn btn-secondary">View Details</a>
+                            </div>
+                        </th>
+                        <th class="product-header">
+                            <div class="product-image"><i class="fas fa-mobile-alt"></i></div>
+                            <div class="product-name">Pixel 8 Pro</div>
+                            <div class="product-rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">☆</span>
+                                <span style="color: var(--mauve); margin-left: 5px;">4.5/5</span>
+                            </div>
+                            <div class="product-buttons">
+                                <a href="#" class="btn btn-primary">Buy Now - $899</a>
+                                <a href="#" class="btn btn-secondary">View Details</a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td><i class="fas fa-dollar-sign spec-icon"></i>Price</td>
+                        <td class="spec-value">$999</td>
+                        <td class="spec-value spec-highlight">$1,199</td>
+                        <td class="spec-value">$899</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-microchip spec-icon"></i>Processor</td>
+                        <td class="spec-value">A17 Pro</td>
+                        <td class="spec-value">Snapdragon 8 Gen 3</td>
+                        <td class="spec-value">Google Tensor G3</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-memory spec-icon"></i>RAM</td>
+                        <td class="spec-value">8GB</td>
+                        <td class="spec-value spec-highlight">12GB</td>
+                        <td class="spec-value">12GB</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-hdd spec-icon"></i>Storage</td>
+                        <td class="spec-value">128GB - 1TB</td>
+                        <td class="spec-value">256GB - 1TB</td>
+                        <td class="spec-value">128GB - 1TB</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-camera spec-icon"></i>Main Camera</td>
+                        <td class="spec-value">48MP Triple</td>
+                        <td class="spec-value spec-highlight">200MP Quad</td>
+                        <td class="spec-value">50MP Triple</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-battery-full spec-icon"></i>Battery</td>
+                        <td class="spec-value">3274mAh</td>
+                        <td class="spec-value spec-highlight">5000mAh</td>
+                        <td class="spec-value">5050mAh</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-mobile-alt spec-icon"></i>Display</td>
+                        <td class="spec-value">6.1" OLED</td>
+                        <td class="spec-value spec-highlight">6.8" Dynamic AMOLED</td>
+                        <td class="spec-value">6.7" OLED</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-shield-alt spec-icon"></i>Warranty</td>
+                        <td class="spec-value">1 Year</td>
+                        <td class="spec-value">1 Year</td>
+                        <td class="spec-value">1 Year</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="summary-section fade-in">
+        <h2 class="summary-title">Our Recommendations</h2>
+        <div class="summary-cards">
+            <div class="summary-card">
+                <h3><i class="fas fa-trophy"></i>Best Overall</h3>
+                <p>Galaxy S24 Ultra offers the most features with excellent performance, camera quality, and battery life.</p>
+                <a href="#" class="btn btn-primary">View Galaxy S24 Ultra</a>
+            </div>
+            <div class="summary-card">
+                <h3><i class="fas fa-dollar-sign"></i>Best Value</h3>
+                <p>Pixel 8 Pro provides flagship features at a more affordable price point with Google's AI enhancements.</p>
+                <a href="#" class="btn btn-primary">View Pixel 8 Pro</a>
+            </div>
+            <div class="summary-card">
+                <h3><i class="fas fa-star"></i>Premium Choice</h3>
+                <p>iPhone 15 Pro delivers premium build quality, ecosystem integration, and consistent software updates.</p>
+                <a href="#" class="btn btn-primary">View iPhone 15 Pro</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visual Charts -->
+    <div class="charts-section fade-in">
+        <h2 class="summary-title summary-color">Performance Comparison</h2>
+        <div class="chart-container">
+            <h3 class="chart-title">Price vs Value Rating</h3>
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-label">iPhone 15 Pro</div>
+                    <div class="bar-container">
+                        <div class="bar-fill animate-bars" style="width: 85%; background: linear-gradient(45deg, var(--french-violet), var(--amethyst));">8.5/10</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Galaxy S24 Ultra</div>
+                    <div class="bar-container">
+                        <div class="bar-fill animate-bars" style="width: 92%; background: linear-gradient(45deg, var(--amethyst), var(--heliotrope));">9.2/10</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Pixel 8 Pro</div>
+                    <div class="bar-container">
+                        <div class="bar-fill animate-bars" style="width: 88%; background: linear-gradient(45deg, var(--heliotrope), var(--mauve));">8.8/10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <h3 class="chart-title">Battery Performance</h3>
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-label">iPhone 15 Pro</div>
+                    <div class="bar-container">
+                        <div class="bar-fill animate-bars" style="width: 65%; background: linear-gradient(45deg, var(--french-violet), var(--amethyst));">3274mAh</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Galaxy S24 Ultra</div>
+                    <div class="bar-container">
+                        <div class="bar-fill animate-bars" style="width: 100%; background: linear-gradient(45deg, var(--amethyst), var(--heliotrope));">5000mAh</div>
+                    </div>
+                </div>
+                <div class="bar-item">
+                    <div class="bar-label">Pixel 8 Pro</div>
+                    <div class="bar-container">
+                        <div class="bar-fill animate-bars" style="width: 101%; background: linear-gradient(45deg, var(--heliotrope), var(--mauve));">5050mAh</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section fade-in">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>How do I choose the right smartphone for me?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Consider your budget, preferred operating system (iOS vs Android), camera requirements, battery life needs, and screen size preferences. Our comparison tool helps you evaluate these factors side by side.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Why should I compare products before buying?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Comparing products helps you make informed decisions, find the best value for your money, and ensure the product meets your specific needs. It can save you from buyer's remorse and help you discover features you might have overlooked.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Are the prices shown here always current?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Prices are updated regularly, but they can change frequently. We recommend clicking through to check the current price on the retailer's website before making a purchase decision.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>What makes a product "Best Overall" or "Best Value"?</span>
+                <i class="fas fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+                <p>Our recommendations are based on a combination of factors including price-to-performance ratio, feature completeness, user reviews, build quality, and long-term value. "Best Overall" offers the most balanced experience, while "Best Value" provides the most features for the price.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Affiliate Notice -->
+    <div class="affiliate-notice">
+        <p><i class="fas fa-info-circle"></i> This comparison includes affiliate links. We may earn a commission when you purchase through these links, at no extra cost to you. This helps us maintain our comparison service.</p>
+    </div>
+
+    <footer id="footer"></footer>
+
+    <script>
+
+         // insert footer
+        fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+      
+        // Sample product data
+        const productData = {
+            smartphones: {
+                iphone15: {
+                    name: "iPhone 15 Pro",
+                    icon: "fas fa-mobile-alt",
+                    rating: 4.8,
+                    price: "$999",
+                    specs: {
+                        "Price": "$999",
+                        "Processor": "A17 Pro",
+                        "RAM": "8GB",
+                        "Storage": "128GB - 1TB",
+                        "Main Camera": "48MP Triple",
+                        "Battery": "3274mAh",
+                        "Display": "6.1\" OLED",
+                        "Warranty": "1 Year"
+                    }
+                },
+                galaxy24: {
+                    name: "Galaxy S24 Ultra",
+                    icon: "fas fa-mobile-alt",
+                    rating: 4.7,
+                    price: "$1,199",
+                    specs: {
+                        "Price": "$1,199",
+                        "Processor": "Snapdragon 8 Gen 3",
+                        "RAM": "12GB",
+                        "Storage": "256GB - 1TB",
+                        "Main Camera": "200MP Quad",
+                        "Battery": "5000mAh",
+                        "Display": "6.8\" Dynamic AMOLED",
+                        "Warranty": "1 Year"
+                    }
+                },
+                pixel8: {
+                    name: "Pixel 8 Pro",
+                    icon: "fas fa-mobile-alt",
+                    rating: 4.5,
+                    price: "$899",
+                    specs: {
+                        "Price": "$899",
+                        "Processor": "Google Tensor G3",
+                        "RAM": "12GB",
+                        "Storage": "128GB - 1TB",
+                        "Main Camera": "50MP Triple",
+                        "Battery": "5050mAh",
+                        "Display": "6.7\" OLED",
+                        "Warranty": "1 Year"
+                    }
+                },
+                oneplus12: {
+                    name: "OnePlus 12",
+                    icon: "fas fa-mobile-alt",
+                    rating: 4.4,
+                    price: "$799",
+                    specs: {
+                        "Price": "$799",
+                        "Processor": "Snapdragon 8 Gen 3",
+                        "RAM": "12GB",
+                        "Storage": "256GB - 1TB",
+                        "Main Camera": "50MP Triple",
+                        "Battery": "5400mAh",
+                        "Display": "6.82\" AMOLED",
+                        "Warranty": "1 Year"
+                    }
+                }
+            },
+            laptops: {
+                macbookpro: {
+                    name: "MacBook Pro 14\"",
+                    icon: "fas fa-laptop",
+                    rating: 4.8,
+                    price: "$1,999",
+                    specs: {
+                        "Price": "$1,999",
+                        "Processor": "M3 Pro",
+                        "RAM": "18GB",
+                        "Storage": "512GB SSD",
+                        "Graphics": "M3 Pro GPU",
+                        "Battery": "70Wh",
+                        "Display": "14.2\" Liquid Retina XDR",
+                        "Warranty": "1 Year"
+                    }
+                },
+                dellxps: {
+                    name: "Dell XPS 13",
+                    icon: "fas fa-laptop",
+                    rating: 4.6,
+                    price: "$1,299",
+                    specs: {
+                        "Price": "$1,299",
+                        "Processor": "Intel Core i7",
+                        "RAM": "16GB",
+                        "Storage": "512GB SSD",
+                        "Graphics": "Intel Iris Xe",
+                        "Battery": "52Wh",
+                        "Display": "13.4\" OLED",
+                        "Warranty": "1 Year"
+                    }
+                }
+            }
+        };
+
+        let currentProducts = ['iphone15', 'galaxy24', 'pixel8'];
+        let currentCategory = 'smartphones';
+
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+            
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+
+        // Add Product Function
+        function addProduct() {
+            const productSelect = document.getElementById('productSelect');
+            const selectedProduct = productSelect.value;
+            
+            if (selectedProduct && !currentProducts.includes(selectedProduct)) {
+                if (currentProducts.length < 4) {
+                    currentProducts.push(selectedProduct);
+                    updateComparisonTable();
+                    productSelect.value = '';
+                } else {
+                    alert('Maximum 4 products can be compared at once.');
+                }
+            }
+        }
+
+        // Remove Product Function
+        function removeProduct(productId) {
+            currentProducts = currentProducts.filter(id => id !== productId);
+            updateComparisonTable();
+        }
+
+        // Update Comparison Table
+        function updateComparisonTable() {
+            const table = document.getElementById('comparisonTable');
+            const header = document.getElementById('tableHeader');
+            const body = document.getElementById('tableBody');
+            
+            // Clear existing content
+            header.innerHTML = '<th>Features</th>';
+            body.innerHTML = '';
+            
+            // Add product headers
+            currentProducts.forEach(productId => {
+                const product = productData[currentCategory][productId];
+                if (product) {
+                    const stars = '★'.repeat(Math.floor(product.rating)) + 
+                                 (product.rating % 1 > 0 ? '☆' : '') + 
+                                 '☆'.repeat(5 - Math.ceil(product.rating));
+                    
+                    header.innerHTML += `
+                        <th class="product-header">
+                            <div class="product-image"><i class="${product.icon}"></i></div>
+                            <div class="product-name">${product.name}</div>
+                            <div class="product-rating">
+                                ${stars.split('').map(star => `<span class="star">${star}</span>`).join('')}
+                                <span style="color: var(--mauve); margin-left: 5px;">${product.rating}/5</span>
+                            </div>
+                            <div class="product-buttons">
+                                <a href="#" class="btn btn-primary">Buy Now - ${product.price}</a>
+                                <a href="#" class="btn btn-secondary">View Details</a>
+                                <button class="btn btn-secondary" onclick="removeProduct('${productId}')" style="margin-top: 5px;">
+                                    <i class="fas fa-times"></i> Remove
+                                </button>
+                            </div>
+                        </th>
+                    `;
+                }
+            });
+            
+            // Add spec rows
+            const specNames = Object.keys(productData[currentCategory][currentProducts[0]]?.specs || {});
+            specNames.forEach(specName => {
+                const row = document.createElement('tr');
+                let iconClass = 'fas fa-info-circle';
+                
+                // Set appropriate icons for different specs
+                switch(specName.toLowerCase()) {
+                    case 'price': iconClass = 'fas fa-dollar-sign'; break;
+                    case 'processor': iconClass = 'fas fa-microchip'; break;
+                    case 'ram': iconClass = 'fas fa-memory'; break;
+                    case 'storage': iconClass = 'fas fa-hdd'; break;
+                    case 'main camera': iconClass = 'fas fa-camera'; break;
+                    case 'battery': iconClass = 'fas fa-battery-full'; break;
+                    case 'display': iconClass = 'fas fa-desktop'; break;
+                    case 'warranty': iconClass = 'fas fa-shield-alt'; break;
+                    case 'graphics': iconClass = 'fas fa-tv'; break;
+                }
+                
+                row.innerHTML = `<td><i class="${iconClass} spec-icon"></i>${specName}</td>`;
+                
+                currentProducts.forEach(productId => {
+                    const product = productData[currentCategory][productId];
+                    const specValue = product?.specs[specName] || 'N/A';
+                    row.innerHTML += `<td class="spec-value">${specValue}</td>`;
+                });
+                
+                body.appendChild(row);
+            });
+        }
+
+        // Category Change Handler
+        function handleCategoryChange() {
+            const categorySelect = document.getElementById('categorySelect');
+            const productSelect = document.getElementById('productSelect');
+            
+            currentCategory = categorySelect.value;
+            currentProducts = Object.keys(productData[currentCategory]).slice(0, 3);
+            
+            // Update product dropdown options
+            productSelect.innerHTML = '<option value="">Select a product...</option>';
+            Object.keys(productData[currentCategory]).forEach(productId => {
+                const product = productData[currentCategory][productId];
+                productSelect.innerHTML += `<option value="${productId}">${product.name}</option>`;
+            });
+            
+            updateComparisonTable();
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners
+            document.getElementById('addProductBtn').addEventListener('click', addProduct);
+            document.getElementById('categorySelect').addEventListener('change', handleCategoryChange);
+            
+            // Initialize with default products
+            handleCategoryChange();
+            
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Animate bars when visible
+            const barObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bars = entry.target.querySelectorAll('.bar-fill');
+                        bars.forEach((bar, index) => {
+                            setTimeout(() => {
+                                bar.style.width = bar.style.width || '0%';
+                            }, index * 200);
+                        });
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.chart-container').forEach(el => {
+                barObserver.observe(el);
+            });
+            
+            // Add hover effects to table rows
+            document.addEventListener('mouseover', function(e) {
+                if (e.target.closest('tr') && e.target.closest('tbody')) {
+                    e.target.closest('tr').style.background = 'rgba(157, 78, 221, 0.1)';
+                }
+            });
+            
+            document.addEventListener('mouseout', function(e) {
+                if (e.target.closest('tr') && e.target.closest('tbody')) {
+                    e.target.closest('tr').style.background = '';
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading states for buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-primary')) {
+                const originalText = e.target.textContent;
+                e.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                setTimeout(() => {
+                    e.target.textContent = originalText;
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Latest Blog Posts - ShopSmart Reviews</title>
+    <meta name="description" content="Tips, reviews, and insights to help you shop smarter. Expert buying guides, product reviews, and seasonal deals.">
+    <meta property="og:title" content="Our Latest Blog Posts - ShopSmart Reviews">
+    <meta property="og:description" content="Tips, reviews, and insights to help you shop smarter.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yoursite.com/blog.html">
+    <link rel="stylesheet" href="nav.css">
+    
+    <style>
+        :root {
+            --russian-violet: #10002bff;
+            --russian-violet-2: #240046ff;
+            --persian-indigo: #3c096cff;
+            --tekhelet: #5a189aff;
+            --french-violet: #7b2cbfff;
+            --amethyst: #9d4eddff;
+            --heliotrope: #c77dffff;
+            --mauve: #e0aaffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, var(--russian-violet) 0%, var(--persian-indigo) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .hero-header {
+           
+            color:var(--russian-violet-2);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: url('other-hero.jpg');
+            background-size: cover;
+            background-position: top;
+        }
+
+        /* .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        } */
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-align: left;
+            padding-left: 100px;
+        }
+
+        .hero-header p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            text-align: left;
+            padding-left: 100px;
+        }
+
+        .featured-post {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .featured-post h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .featured-post p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--amethyst), var(--heliotrope));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(157, 78, 221, 0.4);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            background: white;
+            min-height: 100vh;
+            padding: 60px 0;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .blog-card-content {
+            padding: 25px;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--french-violet), var(--amethyst));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--russian-violet);
+            line-height: 1.3;
+        }
+
+        .blog-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(45deg, var(--amethyst), var(--heliotrope));
+            color: white;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 1px solid #f0f0f0;
+        }
+
+        .widget h3 {
+            color: var(--russian-violet);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--amethyst);
+            box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.1);
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .category-list a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .category-list a:hover {
+            color: var(--amethyst);
+        }
+
+        .recent-post {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .recent-post:last-child {
+            border-bottom: none;
+        }
+
+        .recent-post img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .recent-post-content h4 {
+            font-size: 0.9rem;
+            color: var(--russian-violet);
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .recent-post-content span {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* Newsletter CTA */
+        .newsletter-cta {
+            background: linear-gradient(135deg, var(--tekhelet), var(--french-violet));
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .newsletter-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 400px;
+            margin: 20px auto 0;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            padding: 12px 25px;
+            background: var(--mauve);
+            color: var(--russian-violet);
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .pagination a,
+        .pagination span {
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background: var(--amethyst);
+            color: white;
+        }
+
+        .pagination .current {
+            background: var(--amethyst);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-header p {
+                font-size: 1.1rem;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .featured-post {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero-header {
+                padding: 60px 0;
+            }
+
+            .hero-header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 40px 0;
+            }
+
+            .blog-card-content {
+                padding: 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Schema Markup Styles */
+        .schema-hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "ShopSmart Reviews Blog",
+        "description": "Tips, reviews, and insights to help you shop smarter",
+        "url": "https://yoursite.com/blog.html",
+        "publisher": {
+            "@type": "Organization",
+            "name": "ShopSmart Reviews"
+        }
+    }
+    </script>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">DealHub</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="all_products_page.html" class="nav-link">Products</a></li>
+                <li><a href="affiliate_category_page.html" class="nav-link">Categories</a></li>
+                <li><a href="comparison_charts_page.html" class="nav-link">Comparison</a></li>
+                <li><a href="blog_page.html" class="nav-link">Blog</a></li>
+                <li><a href="contact_page.html" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Latest Blog Posts</h1>
+                <p>Tips, reviews, and insights to help you shop smarter.</p>
+                
+                <div class="featured-post">
+                    <h3>🔥 Featured: Best Black Friday Tech Deals 2024</h3>
+                    <p>Don't miss out on incredible savings! Our expert team has curated the top technology deals this Black Friday season.</p>
+                    <a href="/full-blog.html?post=black-friday-tech-deals" class="btn">Read Full Guide</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Blog Grid -->
+                <section class="blog-section">
+                    <div class="blog-grid" id="blogGrid">
+                        <!-- Blog Card 1 -->
+                        <article class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=200&fit=crop" alt="Headphones review" loading="lazy">
+                            <div class="blog-card-content">
+                                <span class="category-tag">Electronics</span>
+                                <h3>Best Wireless Headphones Under $200</h3>
+                                <div class="blog-meta">
+                                    <div class="author-avatar">JD</div>
+                                    <span>John Doe</span>
+                                    <span>•</span>
+                                    <time datetime="2024-05-20">May 20, 2024</time>
+                                </div>
+                                <p>Discover our top picks for wireless headphones that deliver premium sound quality without breaking the bank. Complete with detailed comparisons and buying tips.</p>
+                                <a href="/full-blog.html?post=wireless-headphones-under-200" class="btn">Read More</a>
+                            </div>
+                        </article>
+
+                        <!-- Blog Card 2 -->
+                        <article class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=200&fit=crop" alt="Fitness equipment" loading="lazy">
+                            <div class="blog-card-content">
+                                <span class="category-tag">Fitness</span>
+                                <h3>Home Gym Essentials: Complete Setup Guide</h3>
+                                <div class="blog-meta">
+                                    <div class="author-avatar">SM</div>
+                                    <span>Sarah Miller</span>
+                                    <span>•</span>
+                                    <time datetime="2024-05-18">May 18, 2024</time>
+                                </div>
+                                <p>Transform your space into the perfect home gym with our comprehensive guide to essential equipment, space optimization, and budget-friendly options.</p>
+                                <a href="/full-blog.html?post=home-gym-essentials" class="btn">Read More</a>
+                            </div>
+                        </article>
+
+                        <!-- Blog Card 3 -->
+                        <article class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=200&fit=crop" alt="Shopping tips" loading="lazy">
+                            <div class="blog-card-content">
+                                <span class="category-tag">Shopping Tips</span>
+                                <h3>10 Smart Shopping Strategies for 2024</h3>
+                                <div class="blog-meta">
+                                    <div class="author-avatar">MJ</div>
+                                    <span>Mike Johnson</span>
+                                    <span>•</span>
+                                    <time datetime="2024-05-15">May 15, 2024</time>
+                                </div>
+                                <p>Master the art of smart shopping with these proven strategies. Learn how to find the best deals, avoid common pitfalls, and maximize your savings.</p>
+                                <a href="/full-blog.html?post=smart-shopping-strategies" class="btn">Read More</a>
+                            </div>
+                        </article>
+
+                        <!-- Blog Card 4 -->
+                        <article class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=200&fit=crop" alt="Kitchen appliances" loading="lazy">
+                            <div class="blog-card-content">
+                                <span class="category-tag">Kitchen</span>
+                                <h3>Air Fryer vs. Convection Oven: Which to Choose?</h3>
+                                <div class="blog-meta">
+                                    <div class="author-avatar">LW</div>
+                                    <span>Lisa Wang</span>
+                                    <span>•</span>
+                                    <time datetime="2024-05-12">May 12, 2024</time>
+                                </div>
+                                <p>Confused between an air fryer and convection oven? Our detailed comparison covers performance, capacity, energy efficiency, and value for money.</p>
+                                <a href="/full-blog.html?post=air-fryer-vs-convection-oven" class="btn">Read More</a>
+                            </div>
+                        </article>
+
+                        <!-- Blog Card 5 -->
+                        <article class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=200&fit=crop" alt="Fashion deals" loading="lazy">
+                            <div class="blog-card-content">
+                                <span class="category-tag">Fashion</span>
+                                <h3>Summer Fashion Trends: Budget-Friendly Finds</h3>
+                                <div class="blog-meta">
+                                    <div class="author-avatar">EK</div>
+                                    <span>Emma Kim</span>
+                                    <span>•</span>
+                                    <time datetime="2024-05-10">May 10, 2024</time>
+                                </div>
+                                <p>Stay stylish this summer without overspending. Discover the hottest trends and where to find affordable alternatives that look expensive.</p>
+                                <a href="/full-blog.html?post=summer-fashion-budget-finds" class="btn">Read More</a>
+                            </div>
+                        </article>
+
+                        <!-- Blog Card 6 -->
+                        <article class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=200&fit=crop" alt="Smart home devices" loading="lazy">
+                            <div class="blog-card-content">
+                                <span class="category-tag">Smart Home</span>
+                                <h3>Smart Home Security: Complete Buyer's Guide</h3>
+                                <div class="blog-meta">
+                                    <div class="author-avatar">RT</div>
+                                    <span>Robert Thompson</span>
+                                    <span>•</span>
+                                    <time datetime="2024-05-08">May 8, 2024</time>
+                                </div>
+                                <p>Protect your home with the latest smart security technology. Compare cameras, doorbells, sensors, and complete systems for every budget.</p>
+                                <a href="/full-blog.html?post=smart-home-security-guide" class="btn">Read More</a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Newsletter CTA -->
+                    <div class="newsletter-cta">
+                        <h3>Never Miss a Deal!</h3>
+                        <p>Get exclusive access to the best product reviews, buying guides, and seasonal deals delivered straight to your inbox.</p>
+                        <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
+                            <input type="email" placeholder="Enter your email address" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav class="pagination" role="navigation" aria-label="Blog pagination">
+                        <a href="#" onclick="changePage(1)">&laquo; Prev</a>
+                        <span class="current">1</span>
+                        <a href="#" onclick="changePage(2)">2</a>
+                        <a href="#" onclick="changePage(3)">3</a>
+                        <a href="#" onclick="changePage(2)">Next &raquo;</a>
+                    </nav>
+                </section>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Search Widget -->
+                    <div class="widget">
+                        <h3>Search Blog</h3>
+                        <input type="search" class="search-box" placeholder="Search articles..." onkeyup="handleSearch(event)">
+                    </div>
+
+                    <!-- Categories Widget -->
+                    <div class="widget">
+                        <h3>Categories</h3>
+                        <ul class="category-list">
+                            <li><a href="#" onclick="filterByCategory('Electronics')">Electronics (15)</a></li>
+                            <li><a href="#" onclick="filterByCategory('Fitness')">Fitness (8)</a></li>
+                            <li><a href="#" onclick="filterByCategory('Kitchen')">Kitchen (12)</a></li>
+                            <li><a href="#" onclick="filterByCategory('Fashion')">Fashion (6)</a></li>
+                            <li><a href="#" onclick="filterByCategory('Smart Home')">Smart Home (10)</a></li>
+                            <li><a href="#" onclick="filterByCategory('Shopping Tips')">Shopping Tips (4)</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Recent Posts Widget -->
+                    <div class="widget">
+                        <h3>Recent Posts</h3>
+                        <div class="recent-posts">
+                            <div class="recent-post">
+                                <img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=60&h=60&fit=crop" alt="Gaming setup" loading="lazy">
+                                <div class="recent-post-content">
+                                    <h4>Best Gaming Monitors Under $300</h4>
+                                    <span>May 22, 2024</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=60&h=60&fit=crop" alt="Audio equipment" loading="lazy">
+                                <div class="recent-post-content">
+                                    <h4>Podcast Equipment for Beginners</h4>
+                                    <span>May 21, 2024</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <img src="https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=60&h=60&fit=crop" alt="Beauty products" loading="lazy">
+                                <div class="recent-post-content">
+                                    <h4>Skincare Routine on a Budget</h4>
+                                    <span>May 19, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Popular Posts Widget -->
+                    <div class="widget">
+                        <h3>Editor's Picks</h3>
+                        <div class="recent-posts">
+                            <div class="recent-post">
+                                <img src="https://images.unsplash.com/photo-1560743173-567a3b5658b1?w=60&h=60&fit=crop" alt="Laptop review" loading="lazy">
+                                <div class="recent-post-content">
+                                    <h4>Best Laptops for Students 2024</h4>
+                                    <span>45,678 views</span>
+                                </div>
+                            </div>
+                            <div class="recent-post">
+                                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=60&h=60&fit=crop" alt="Phone comparison" loading="lazy">
+                                <div class="recent-post-content">
+                                    <h4>iPhone vs Android: 2024 Comparison</h4>
+                                    <span>32,145 views</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script>
+
+         // insert footer
+        fetch('footer.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+
+      
+        // Blog functionality
+        let currentPage = 1;
+        let filteredCategory = null;
+
+        function handleSearch(event) {
+            const searchTerm = event.target.value.toLowerCase();
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            blogCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const content = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || content.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function filterByCategory(category) {
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            blogCards.forEach(card => {
+                const cardCategory = card.querySelector('.category-tag').textContent;
+                
+                if (category === 'All' || cardCategory === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            filteredCategory = category;
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            
+            // Update pagination display
+            const paginationLinks = document.querySelectorAll('.pagination a, .pagination span');
+            paginationLinks.forEach(link => {
+                link.classList.remove('current');
+            });
+            
+            // Add loading effect
+            const blogGrid = document.getElementById('blogGrid');
+            blogGrid.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                blogGrid.style.opacity = '1';
+                // In a real application, you would fetch new blog posts here
+                console.log(`Loading page ${page}`);
+            }, 300);
+        }
+
+        function handleNewsletterSignup(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            const button = event.target.querySelector('button');
+            const originalText = button.textContent;
+            
+            button.innerHTML = '<div class="loading"></div>';
+            button.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                button.textContent = 'Subscribed!';
+                button.style.background = '#4CAF50';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                    button.disabled = false;
+                    event.target.reset();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Lazy loading for images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some dynamic content loading simulation
+        window.addEventListener('scroll', () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1000) {
+                // Load more content when near bottom
+                // In a real application, this would trigger an API call to load more blog posts
+                console.log('Near bottom - would load more posts here');
+            }
+        });
+
+        // Add animation on scroll for blog cards
+        const observeCards = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Initially hide cards and animate them in
+        document.querySelectorAll('.blog-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observeCards.observe(card);
+        });
+
+        // Add click tracking for analytics (placeholder)
+        document.querySelectorAll('.blog-card .btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const blogTitle = this.closest('.blog-card').querySelector('h3').textContent;
+                // In a real application, you'd send this to your analytics service
+                console.log(`Blog clicked: ${blogTitle}`);
+            });
+        });
+
+        // Enhanced search with debounce
+        let searchTimeout;
+        function handleSearch(event) {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const searchTerm = event.target.value.toLowerCase();
+                const blogCards = document.querySelectorAll('.blog-card');
+                let visibleCount = 0;
+                
+                blogCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const content = card.querySelector('p').textContent.toLowerCase();
+                    const category = card.querySelector('.category-tag').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || content.includes(searchTerm) || category.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show no results message if needed
+                const existingNoResults = document.querySelector('.no-results');
+                if (existingNoResults) {
+                    existingNoResults.remove();
+                }
+
+                if (visibleCount === 0 && searchTerm.length > 0) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.style.cssText = `
+                        text-align: center;
+                        padding: 60px 20px;
+                        color: #666;
+                        font-size: 1.1rem;
+                        grid-column: 1 / -1;
+                    `;
+                    noResults.innerHTML = `
+                        <h3 style="color: var(--russian-violet); margin-bottom: 15px;">No articles found</h3>
+                        <p>Try searching with different keywords or browse our categories.</p>
+                    `;
+                    document.querySelector('.blog-grid').appendChild(noResults);
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
