@@ -1,6 +1,7 @@
 const btn = document.getElementById('browseBtn');
 const grid = document.querySelector('.categories-container')
 const arrow = document.querySelector('.arrow')
+grid.style.display = 'none'
     btn.addEventListener('click', toggleCategories)
 function toggleCategories() {
     if(grid.style.display === 'none'){
