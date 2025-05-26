@@ -95,7 +95,7 @@
             .nav-categories-grid {
                 grid-template-columns: 1fr !important;
                 width: 290px !important;
-                position: relative !important;
+               
             }
             .category-item {
                 align-items: normal;
@@ -224,7 +224,7 @@
     .nav-categories-grid {
     /* margin-top: 29px; */
     width: 650px;
-    transform: translate(0px, 30px);
+    transform: translate(-37px, 30px);
     position: absolute;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
