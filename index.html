@@ -446,24 +446,8 @@
 
     <footer id="footer"></footer>
 
-    <script>
-
-        const btn = document.getElementById('browseBtn');
-        const grid = document.querySelector('.categories-container')
-        const arrow = document.querySelector('.arrow')
-            btn.addEventListener('click', toggleCategories)
-        function toggleCategories() {
-            if(grid.style.display === 'none'){
-                grid.style.display = 'block'
-                arrow.style.transform = 'rotate(180deg)'
-            }else{
-                grid.style.display = 'none'
-                arrow.style.transform = 'rotate(0)'
-            }
-        
-        }
-    </script>
     
+    <script src="nav.js"></script>
     <script>
         // insert footer
         fetch('footer.html')

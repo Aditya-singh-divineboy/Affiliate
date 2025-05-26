@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse by Category - Premium Affiliate Products</title>
     <link rel="stylesheet" href="nav.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     <meta name="description" content="Explore top affiliate products by category. Find the best deals in Electronics, Fashion, Fitness, Home, Beauty, Travel and more.">
     <style>
         :root {
@@ -26,7 +27,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, var(--heliotrope) 0%, var(--mauve) 100%);
+            background-color: #fff;
             color: white;
             min-height: 100vh;
             line-height: 1.6;
@@ -42,47 +43,13 @@
             top: 0;
             z-index: 100;
         }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--mauve);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--mauve);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color:  var(--amethyst);
-        }
+        
 
         /* Breadcrumbs */
         .breadcrumbs {
             max-width: 1400px;
             margin: 0 auto;
-            margin-top: 80px;
+            margin-top: 110px;
             padding: .5rem .5rem;
             display: flex;
             align-items: center;
@@ -247,7 +214,7 @@
             box-shadow: 0 20px 40px rgba(157, 78, 221, 0.3);
         }
 
-        .category-icon {
+        .category-icons {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             background: linear-gradient(45deg, var(--heliotrope), var(--mauve));
@@ -256,7 +223,7 @@
             background-clip: text;
         }
 
-        .category-name {
+        .categorys-name {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
@@ -392,9 +359,6 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
 
             .mobile-menu-toggle {
                 display: block;
@@ -447,17 +411,93 @@
 <body>
     
     <!-- Header -->
-    <nav class="navbar">
+     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">DealHub</div>
+            <img src="webeside.webp" alt="" class="logo">
+            
             <ul class="nav-menu">
+                <div class="All-cotegories-btn">
+                <div class="header-btn">
+                    <button class="browse-btn" id="browseBtn">
+                        <span>📱</span>
+                        All Categories
+                        <span class="arrow">▼</span>
+                    </button>
+                </div>
+
+                <div class="categories-container" id="categoriesContainer">
+                    <div class="nav-categories-grid">
+                        <div class="category-item">
+                            <div class="category-icon icon-personal">💻</div>
+                            <div class="category-name">Electronics & Gadgets</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-home">🍽️</div>
+                            <div class="category-name">Home & Kitchen</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-oral">🏋️‍♂️</div>
+                            <div class="category-name">Health & Fitness</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-bath">👗</div>
+                            <div class="category-name">Fashion & Apparel</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-travel">💄</div>
+                            <div class="category-name">Beauty & Personal Care</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-stationery">🎮</div>
+                            <div class="category-name">Gaming & Entertainment</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-yoga">🧳</div>
+                            <div class="category-name">Travel & Outdoors</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-gardening">🔒</div>
+                            <div class="category-name">Smart Home & Appliances</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-kitchen">👶</div>
+                            <div class="category-name">Baby & Kids</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-eco">🚗</div>
+                            <div class="category-name">Automotive & Tools</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-baby">🪑</div>
+                            <div class="category-name">Office & Productivity</div>
+                        </div>
+                    </div>
+                    <!-- <div class="show-less">
+                        <button class="show-less-btn" id="showLessBtn">
+                            ⊖ Show less...
+                        </button>
+                    </div> -->
+                </div>
+            </div>
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="all_products_page.html" class="nav-link">Products</a></li>
                 <li><a href="affiliate_category_page.html" class="nav-link">Categories</a></li>
                 <li><a href="comparison_charts_page.html" class="nav-link">Comparison</a></li>
                 <li><a href="blog_page.html" class="nav-link">Blog</a></li>
                 <li><a href="contact_page.html" class="nav-link">Contact Us</a></li>
+            <div class="search-box">
+                <input type="search" placeholder="search" class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+                <div class="header-right-icon">
+                    <a href="#" ><i class="fa-solid fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#"><i class="fa-solid fa-user"></i> Account</a>
+                </div>
             </ul>
+            
+           
+                
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -545,8 +585,8 @@
             <section class="categories-section">
                 <div class="categories-grid">
                     <div class="category-card" onclick="navigateToCategory('electronics')">
-                        <div class="category-icon">💻</div>
-                        <h3 class="category-name">Electronics</h3>
+                        <div class="category-icons">💻</div>
+                        <h3 class="categorys-name">Electronics</h3>
                         <p class="category-description">Latest gadgets, smartphones, laptops, and tech accessories</p>
                         <div class="category-stats">
                             <span class="item-count">150+ Items</span>
@@ -555,8 +595,8 @@
                     </div>
 
                     <div class="category-card" onclick="navigateToCategory('fitness')">
-                        <div class="category-icon">💪</div>
-                        <h3 class="category-name">Fitness & Health</h3>
+                        <div class="category-icons">💪</div>
+                        <h3 class="categorys-name">Fitness & Health</h3>
                         <p class="category-description">Workout equipment, supplements, and wellness products</p>
                         <div class="category-stats">
                             <span class="item-count">85+ Items</span>
@@ -565,8 +605,8 @@
                     </div>
 
                     <div class="category-card" onclick="navigateToCategory('fashion')">
-                        <div class="category-icon">👗</div>
-                        <h3 class="category-name">Fashion & Style</h3>
+                        <div class="category-icons">👗</div>
+                        <h3 class="categorys-name">Fashion & Style</h3>
                         <p class="category-description">Clothing, accessories, shoes, and fashion essentials</p>
                         <div class="category-stats">
                             <span class="item-count">200+ Items</span>
@@ -575,8 +615,8 @@
                     </div>
 
                     <div class="category-card" onclick="navigateToCategory('home')">
-                        <div class="category-icon">🏠</div>
-                        <h3 class="category-name">Home & Living</h3>
+                        <div class="category-icons">🏠</div>
+                        <h3 class="categorys-name">Home & Living</h3>
                         <p class="category-description">Furniture, decor, kitchen appliances, and home essentials</p>
                         <div class="category-stats">
                             <span class="item-count">120+ Items</span>
@@ -585,8 +625,8 @@
                     </div>
 
                     <div class="category-card" onclick="navigateToCategory('beauty')">
-                        <div class="category-icon">💄</div>
-                        <h3 class="category-name">Beauty & Care</h3>
+                        <div class="category-icons">💄</div>
+                        <h3 class="categorys-name">Beauty & Care</h3>
                         <p class="category-description">Skincare, makeup, haircare, and personal care products</p>
                         <div class="category-stats">
                             <span class="item-count">95+ Items</span>
@@ -595,8 +635,8 @@
                     </div>
 
                     <div class="category-card" onclick="navigateToCategory('travel')">
-                        <div class="category-icon">✈️</div>
-                        <h3 class="category-name">Travel & Outdoor</h3>
+                        <div class="category-icons">✈️</div>
+                        <h3 class="categorys-name">Travel & Outdoor</h3>
                         <p class="category-description">Luggage, camping gear, travel accessories, and outdoor equipment</p>
                         <div class="category-stats">
                             <span class="item-count">60+ Items</span>
@@ -605,8 +645,8 @@
                     </div>
 
                     <div class="category-card" onclick="navigateToCategory('books')">
-                        <div class="category-icon">📚</div>
-                        <h3 class="category-name">Books & Education</h3>
+                        <div class="category-icons">📚</div>
+                        <h3 class="categorys-name">Books & Education</h3>
                         <p class="category-description">E-books, courses, educational materials, and learning resources</p>
                         <div class="category-stats">
                             <span class="item-count">75+ Items</span>
@@ -615,8 +655,8 @@
                     </div>
 
                     <div class="category-card" onclick="navigateToCategory('automotive')">
-                        <div class="category-icon">🚗</div>
-                        <h3 class="category-name">Automotive</h3>
+                        <div class="category-icons">🚗</div>
+                        <h3 class="categorys-name">Automotive</h3>
                         <p class="category-description">Car accessories, tools, maintenance products, and auto care</p>
                         <div class="category-stats">
                             <span class="item-count">45+ Items</span>
@@ -632,22 +672,22 @@
             <h2 class="section-title">Top Rated in All Categories</h2>
             <div class="featured-grid">
                 <div class="featured-item">
-                    <div class="category-icon">⭐</div>
+                    <div class="category-icons">⭐</div>
                     <h4>Premium Wireless Headphones</h4>
                     <p>4.9/5 Rating • Electronics</p>
                 </div>
                 <div class="featured-item">
-                    <div class="category-icon">⭐</div>
+                    <div class="category-icons">⭐</div>
                     <h4>Organic Protein Powder</h4>
                     <p>4.8/5 Rating • Fitness</p>
                 </div>
                 <div class="featured-item">
-                    <div class="category-icon">⭐</div>
+                    <div class="category-icons">⭐</div>
                     <h4>Designer Handbag</h4>
                     <p>4.9/5 Rating • Fashion</p>
                 </div>
                 <div class="featured-item">
-                    <div class="category-icon">⭐</div>
+                    <div class="category-icons">⭐</div>
                     <h4>Smart Home Assistant</h4>
                     <p>4.7/5 Rating • Home</p>
                 </div>
@@ -659,22 +699,22 @@
             <h2 class="section-title">Editor's Picks</h2>
             <div class="featured-grid">
                 <div class="featured-item">
-                    <div class="category-icon">👑</div>
+                    <div class="category-icons">👑</div>
                     <h4>Ultra-Fast Gaming Laptop</h4>
                     <p>Editor's Choice • Electronics</p>
                 </div>
                 <div class="featured-item">
-                    <div class="category-icon">👑</div>
+                    <div class="category-icons">👑</div>
                     <h4>Luxury Skincare Set</h4>
                     <p>Editor's Choice • Beauty</p>
                 </div>
                 <div class="featured-item">
-                    <div class="category-icon">👑</div>
+                    <div class="category-icons">👑</div>
                     <h4>Professional Yoga Mat</h4>
                     <p>Editor's Choice • Fitness</p>
                 </div>
                 <div class="featured-item">
-                    <div class="category-icon">👑</div>
+                    <div class="category-icons">👑</div>
                     <h4>Smart Coffee Maker</h4>
                     <p>Editor's Choice • Home</p>
                 </div>
@@ -689,6 +729,7 @@
 
     <footer id="footer"></footer>
 
+    <script src="nav.js"></script>
     <script>
 
          // insert footer

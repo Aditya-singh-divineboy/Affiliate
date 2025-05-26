@@ -10,6 +10,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yoursite.com/blog.html">
     <link rel="stylesheet" href="nav.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     
     <style>
         :root {
@@ -244,7 +245,7 @@
             font-size: 1.3rem;
         }
 
-        .search-box {
+        .blog-search-box {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e0e0e0;
@@ -253,7 +254,7 @@
             transition: all 0.3s ease;
         }
 
-        .search-box:focus {
+        .blog-search-box:focus {
             outline: none;
             border-color: var(--amethyst);
             box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.1);
@@ -476,15 +477,91 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">DealHub</div>
+            <img src="webeside.webp" alt="" class="logo">
+            
             <ul class="nav-menu">
+                <div class="All-cotegories-btn">
+                <div class="header-btn">
+                    <button class="browse-btn" id="browseBtn">
+                        <span>📱</span>
+                        All Categories
+                        <span class="arrow">▼</span>
+                    </button>
+                </div>
+
+                <div class="categories-container" id="categoriesContainer">
+                    <div class="nav-categories-grid">
+                        <div class="category-item">
+                            <div class="category-icon icon-personal">💻</div>
+                            <div class="category-name">Electronics & Gadgets</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-home">🍽️</div>
+                            <div class="category-name">Home & Kitchen</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-oral">🏋️‍♂️</div>
+                            <div class="category-name">Health & Fitness</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-bath">👗</div>
+                            <div class="category-name">Fashion & Apparel</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-travel">💄</div>
+                            <div class="category-name">Beauty & Personal Care</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-stationery">🎮</div>
+                            <div class="category-name">Gaming & Entertainment</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-yoga">🧳</div>
+                            <div class="category-name">Travel & Outdoors</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-gardening">🔒</div>
+                            <div class="category-name">Smart Home & Appliances</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-kitchen">👶</div>
+                            <div class="category-name">Baby & Kids</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-eco">🚗</div>
+                            <div class="category-name">Automotive & Tools</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-icon icon-baby">🪑</div>
+                            <div class="category-name">Office & Productivity</div>
+                        </div>
+                    </div>
+                    <!-- <div class="show-less">
+                        <button class="show-less-btn" id="showLessBtn">
+                            ⊖ Show less...
+                        </button>
+                    </div> -->
+                </div>
+            </div>
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="all_products_page.html" class="nav-link">Products</a></li>
                 <li><a href="affiliate_category_page.html" class="nav-link">Categories</a></li>
                 <li><a href="comparison_charts_page.html" class="nav-link">Comparison</a></li>
                 <li><a href="blog_page.html" class="nav-link">Blog</a></li>
                 <li><a href="contact_page.html" class="nav-link">Contact Us</a></li>
+            <div class="search-box">
+                <input type="search" placeholder="search" class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+                <div class="header-right-icon">
+                    <a href="#" ><i class="fa-solid fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#"><i class="fa-solid fa-user"></i> Account</a>
+                </div>
             </ul>
+            
+           
+                
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -645,7 +722,7 @@
                     <!-- Search Widget -->
                     <div class="widget">
                         <h3>Search Blog</h3>
-                        <input type="search" class="search-box" placeholder="Search articles..." onkeyup="handleSearch(event)">
+                        <input type="search" class="blog-search-box" placeholder="Search articles..." onkeyup="handleSearch(event)">
                     </div>
 
                     <!-- Categories Widget -->
@@ -716,7 +793,9 @@
 
     <footer id="footer"></footer>
 
-    <script>
+   <script src="nav.js"></script>
+   
+   <script>
 
          // insert footer
         fetch('footer.html')
