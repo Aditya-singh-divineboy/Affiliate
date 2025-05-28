@@ -35,6 +35,7 @@
         /* Header Section */
         .header-banner {
             text-align: center;
+            margin-top: 2.5rem;
             padding: 80px 20px;
             /* background: linear-gradient(135deg, var(--russian-violet-2) 0%, var(--tekhelet) 50%, var(--french-violet) 100%); */
             position: relative;
@@ -78,10 +79,11 @@
 
         /* Filter Panel */
         .filter-panel {
+            max-width: 1200px;
             background: rgba(36, 0, 70, 0.9);
             backdrop-filter: blur(10px);
             padding: 30px;
-            margin: 40px 20px;
+            margin: 20px auto;
             border-radius: 20px;
             border: 1px solid var(--persian-indigo);
             box-shadow: 0 20px 40px rgba(16, 0, 43, 0.5);
@@ -145,12 +147,13 @@
 
         /* Comparison Table */
         .comparison-container {
-            margin: 40px 20px;
-            background: rgba(36, 0, 70, 0.9);
+            margin: 40px auto;
+            max-width: 1200px;
+            background: rgba(235, 228, 241, 0.9);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid var(--persian-indigo);
+            /* border: 1px solid var(--persian-indigo); */
             box-shadow: 0 20px 40px rgba(16, 0, 43, 0.5);
         }
 
@@ -162,22 +165,24 @@
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 800px;
+            min-width: 400px;
         }
 
         .comparison-table th,
         .comparison-table td {
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid var(--persian-indigo);
+            /* border-bottom: 1px solid var(--persian-indigo); */
             transition: all 0.3s ease;
+            color: black;
         }
 
         .comparison-table th {
-            background: linear-gradient(135deg, var(--russian-violet-2), var(--persian-indigo));
+            /* background: linear-gradient(135deg, var(--russian-violet-2), var(--persian-indigo)); */
             font-weight: 700;
-            color: var(--heliotrope);
+            color: black;
             position: sticky;
+            font-size: 20px;
             top: 0;
             z-index: 10;
         }
@@ -186,16 +191,16 @@
         .comparison-table td:first-child {
             position: sticky;
             left: 0;
-            background: var(--russian-violet-2);
+            /* background: var(--russian-violet-2); */
             z-index: 5;
             font-weight: 600;
             text-align: left;
-            border-right: 2px solid var(--persian-indigo);
+            /* border-right: 2px solid var(--persian-indigo); */
         }
 
         .product-header {
             padding: 30px 20px;
-            background: linear-gradient(135deg, var(--tekhelet), var(--french-violet));
+            /* background: linear-gradient(135deg, var(--tekhelet), var(--french-violet)); */
         }
 
         .product-image {
@@ -215,7 +220,7 @@
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 10px;
-            color: white;
+            color: black;
         }
 
         .product-rating {
@@ -255,7 +260,7 @@
 
         .btn-secondary {
             background: transparent;
-            color: var(--heliotrope);
+            color: var(--russian-violet-2);
             border: 2px solid var(--heliotrope);
         }
 
@@ -266,7 +271,7 @@
 
         .spec-value {
             font-weight: 600;
-            color: var(--mauve);
+            color: black;
         }
 
         .spec-highlight {
@@ -279,7 +284,7 @@
 
         .spec-icon {
             margin-right: 8px;
-            color: var(--heliotrope);
+            color: var(--russian-violet-2);
         }
 
         /* Summary Cards */
@@ -294,7 +299,7 @@
             color: var(--russian-violet-2);
         }
         .summary-color{
-           color: var(--mauve); 
+           color: var(--russian-violet-2); 
         }
 
         .summary-cards {
@@ -347,17 +352,18 @@
 
         /* Visual Charts */
         .charts-section {
-            margin: 60px 20px;
-            background: rgba(36, 0, 70, 0.9);
+            margin: 60px auto;
+            background: rgba(235, 228, 241, 0.9);
             backdrop-filter: blur(10px);
             padding: 40px;
             border-radius: 20px;
             border: 1px solid var(--persian-indigo);
+            max-width: 1200px;
         }
 
         .chart-container {
             margin: 30px 0;
-            background: rgba(16, 0, 43, 0.5);
+            background: var(--persian-indigo);
             padding: 30px;
             border-radius: 15px;
         }
@@ -472,9 +478,10 @@
 
         /* Affiliate Notice */
         .affiliate-notice {
-            background: rgba(16, 0, 43, 0.8);
+            background: rgb(51 4 131 / 80%);
             padding: 20px;
-            margin: 40px 20px;
+            margin: 40px auto;
+            max-width: 1200px;
             border-radius: 15px;
             border: 1px solid var(--persian-indigo);
             text-align: center;
@@ -538,6 +545,9 @@
             from {
                 width: 0;
             }
+        }
+        .rate{
+            color: #000;
         }
     </style>
 </head>
@@ -689,7 +699,7 @@
                                 <span class="star">★</span>
                                 <span class="star">★</span>
                                 <span class="star">★</span>
-                                <span style="color: var(--mauve); margin-left: 5px;">4.8/5</span>
+                                <span class="rate" style="margin-left: 5px;">4.8/5</span>
                             </div>
                             <div class="product-buttons">
                                 <a href="#" class="btn btn-primary">Buy Now - $999</a>
@@ -705,7 +715,7 @@
                                 <span class="star">★</span>
                                 <span class="star">★</span>
                                 <span class="star">★</span>
-                                <span style="color: var(--mauve); margin-left: 5px;">4.7/5</span>
+                                <span class="rate" style=" margin-left: 5px;">4.7/5</span>
                             </div>
                             <div class="product-buttons">
                                 <a href="#" class="btn btn-primary">Buy Now - $1,199</a>
@@ -721,7 +731,7 @@
                                 <span class="star">★</span>
                                 <span class="star">★</span>
                                 <span class="star">☆</span>
-                                <span style="color: var(--mauve); margin-left: 5px;">4.5/5</span>
+                                <span class="rate" style=" margin-left: 5px;">4.5/5</span>
                             </div>
                             <div class="product-buttons">
                                 <a href="#" class="btn btn-primary">Buy Now - $899</a>
@@ -1023,14 +1033,30 @@
         let currentCategory = 'smartphones';
 
         // FAQ Toggle Function
-        function toggleFAQ(element) {
-            const faqItem = element.parentElement;
-            const answer = faqItem.querySelector('.faq-answer');
-            const icon = element.querySelector('.faq-icon');
-            
-            faqItem.classList.toggle('active');
-            answer.classList.toggle('active');
-        }
+       const questions = document.querySelectorAll('.faq-question');
+
+            questions.forEach((question) => {
+            question.addEventListener('click', () => {
+                // Sabhi answers ko band karo
+                questions.forEach((q) => {
+                if (q !== question) {
+                    q.classList.remove('active');
+                    q.nextElementSibling.style.maxHeight = null;
+                }
+                });
+
+                // Toggle current answer
+                question.classList.toggle('active');
+                const answer = question.nextElementSibling;
+
+                if (question.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                answer.style.maxHeight = null;
+                }
+            });
+            });
+
 
         // Add Product Function
         function addProduct() {

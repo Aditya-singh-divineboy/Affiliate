@@ -1,6 +1,7 @@
 const btn = document.getElementById('browseBtn');
 const grid = document.querySelector('.categories-container')
 const arrow = document.querySelector('.arrow')
+grid.style.display = 'none'
     btn.addEventListener('click', toggleCategories)
 function toggleCategories() {
     if(grid.style.display === 'none'){
@@ -13,7 +14,7 @@ function toggleCategories() {
 
 }
 
-const hamburger = document.querySelector('.hamburger');
+        const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
 
         hamburger.addEventListener('click', () => {
