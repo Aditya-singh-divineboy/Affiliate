@@ -79,7 +79,7 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             text-align: left;
-            padding-left: 100px;
+           
         }
 
         .hero-header p {
@@ -400,7 +400,8 @@
             }
 
             .hero-header p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                padding-right: 80px;
             }
 
             .content-wrapper {
@@ -422,17 +423,25 @@
         }
 
         @media (max-width: 480px) {
+            .featured-post{
+                display: none;
+            }
             .container {
                 padding: 0 15px;
             }
 
             .hero-header {
+                padding-top: 10px !important;
                 padding: 60px 0;
+                height: 230px;
+                margin-top: 70px;
             }
 
             .hero-header h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 padding: 0;
+                padding-left: 0 !important;
+                
             }
 
             .main-content {

@@ -157,134 +157,302 @@
             box-shadow: 0 20px 40px rgba(16, 0, 43, 0.5);
         }
 
-        .table-wrapper {
-            overflow-x: auto;
-            position: relative;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 400px;
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
         }
 
-        .comparison-table th,
-        .comparison-table td {
-            padding: 20px;
-            text-align: center;
-            /* border-bottom: 1px solid var(--persian-indigo); */
-            transition: all 0.3s ease;
-            color: black;
-        }
-
-        .comparison-table th {
-            /* background: linear-gradient(135deg, var(--russian-violet-2), var(--persian-indigo)); */
-            font-weight: 700;
-            color: black;
-            position: sticky;
-            font-size: 20px;
-            top: 0;
-            z-index: 10;
-        }
-
-        .comparison-table th:first-child,
-        .comparison-table td:first-child {
-            position: sticky;
-            left: 0;
-            /* background: var(--russian-violet-2); */
-            z-index: 5;
-            font-weight: 600;
-            text-align: left;
-            /* border-right: 2px solid var(--persian-indigo); */
-        }
-
-        .product-header {
-            padding: 30px 20px;
-            /* background: linear-gradient(135deg, var(--tekhelet), var(--french-violet)); */
-        }
-
-        .product-image {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, var(--amethyst), var(--heliotrope));
+        .phone-card {
+            background: white;
             border-radius: 15px;
-            margin: 0 auto 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .phone-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7);
+        }
+
+        .phone-icon {
+            width: 60px;
+            height: 100px;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 12px;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: white;
+            position: relative;
         }
 
-        .product-name {
-            font-size: 1.2rem;
+        .phone-icon::before {
+            content: '';
+            width: 40px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .phone-name {
+            text-align: center;
+            font-size: 1.4rem;
             font-weight: 700;
+            color: #1f2937;
             margin-bottom: 10px;
-            color: black;
         }
 
-        .product-rating {
+        .rating {
             display: flex;
             justify-content: center;
-            gap: 2px;
-            margin-bottom: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 5px;
         }
 
-        .star {
-            color: #ffd700;
-            font-size: 1rem;
+        .stars {
+            color: #fbbf24;
+            font-size: 1.2rem;
         }
 
-        .product-buttons {
+        .rating-text {
+            color: #6b7280;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+
+        .buttons {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .btn {
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 8px;
             border: none;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
             text-align: center;
+            text-decoration: none;
+            font-size: 0.95rem;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, var(--french-violet), var(--amethyst));
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
             color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #7c3aed, #9333ea);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--russian-violet-2);
-            border: 2px solid var(--heliotrope);
+            background: white;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+        }
+
+        .btn-remove {
+            background: #fef2f2;
+            color: #ef4444;
+            border: 1px solid #fecaca;
+            font-size: 0.9rem;
+        }
+
+        .btn-remove:hover {
+            background: #fee2e2;
+            transform: scale(0.98);
+        }
+
+        .specs {
+            list-style: none;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+            transition: all 0.2s ease;
+        }
+
+        .spec-item:hover {
+            background: #f9fafb;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 6px;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .spec-value {
-            font-weight: 600;
-            color: black;
-        }
-
-        .spec-highlight {
-            background: linear-gradient(45deg, var(--amethyst), var(--heliotrope));
-            padding: 5px 10px;
-            border-radius: 8px;
-            color: white;
-            font-weight: 700;
+            font-weight: 500;
+            color: #6b7280;
         }
 
         .spec-icon {
-            margin-right: 8px;
-            color: var(--russian-violet-2);
+            width: 16px;
+            height: 16px;
+            background: #8b5cf6;
+            border-radius: 3px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .phone-card {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .phone-name {
+                font-size: 1.2rem;
+            }
+
+            .buttons {
+                gap: 10px;
+            }
+
+            .btn {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .phone-card {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .spec-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                padding: 10px 0;
+            }
+
+            .spec-value {
+                font-size: 0.9rem;
+            }
+        }
+
+        .animate-in {
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .removed {
+            animation: slideOut 0.4s ease forwards;
+        }
+
+        @keyframes slideOut {
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+                height: 0;
+                margin: 0;
+                padding: 0;
+            }
         }
 
         /* Summary Cards */
@@ -491,8 +659,18 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .header-banner{
+                height: 250px;
+            }
+            
             .header-banner h1 {
-                font-size: 2.5rem;
+                font-size: 1.75rem;
+                padding-left: 0;
+            }
+            .header-banner p{
+                font-size: 1rem;
+                padding-left: 0;
+                padding-right: 100px;
             }
 
             .filter-row {
@@ -685,113 +863,230 @@
 
     <!-- Comparison Table -->
     <div class="comparison-container fade-in">
-        <div class="table-wrapper">
-            <table class="comparison-table" id="comparisonTable">
-                <thead>
-                    <tr id="tableHeader">
-                        <th>Features</th>
-                        <th class="product-header">
-                            <div class="product-image"><i class="fas fa-mobile-alt"></i></div>
-                            <div class="product-name">iPhone 15 Pro</div>
-                            <div class="product-rating">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="rate" style="margin-left: 5px;">4.8/5</span>
-                            </div>
-                            <div class="product-buttons">
-                                <a href="#" class="btn btn-primary">Buy Now - $999</a>
-                                <a href="#" class="btn btn-secondary">View Details</a>
-                            </div>
-                        </th>
-                        <th class="product-header">
-                            <div class="product-image"><i class="fas fa-mobile-alt"></i></div>
-                            <div class="product-name">Galaxy S24 Ultra</div>
-                            <div class="product-rating">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="rate" style=" margin-left: 5px;">4.7/5</span>
-                            </div>
-                            <div class="product-buttons">
-                                <a href="#" class="btn btn-primary">Buy Now - $1,199</a>
-                                <a href="#" class="btn btn-secondary">View Details</a>
-                            </div>
-                        </th>
-                        <th class="product-header">
-                            <div class="product-image"><i class="fas fa-mobile-alt"></i></div>
-                            <div class="product-name">Pixel 8 Pro</div>
-                            <div class="product-rating">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">☆</span>
-                                <span class="rate" style=" margin-left: 5px;">4.5/5</span>
-                            </div>
-                            <div class="product-buttons">
-                                <a href="#" class="btn btn-primary">Buy Now - $899</a>
-                                <a href="#" class="btn btn-secondary">View Details</a>
-                            </div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td><i class="fas fa-dollar-sign spec-icon"></i>Price</td>
-                        <td class="spec-value">$999</td>
-                        <td class="spec-value spec-highlight">$1,199</td>
-                        <td class="spec-value">$899</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-microchip spec-icon"></i>Processor</td>
-                        <td class="spec-value">A17 Pro</td>
-                        <td class="spec-value">Snapdragon 8 Gen 3</td>
-                        <td class="spec-value">Google Tensor G3</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-memory spec-icon"></i>RAM</td>
-                        <td class="spec-value">8GB</td>
-                        <td class="spec-value spec-highlight">12GB</td>
-                        <td class="spec-value">12GB</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-hdd spec-icon"></i>Storage</td>
-                        <td class="spec-value">128GB - 1TB</td>
-                        <td class="spec-value">256GB - 1TB</td>
-                        <td class="spec-value">128GB - 1TB</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-camera spec-icon"></i>Main Camera</td>
-                        <td class="spec-value">48MP Triple</td>
-                        <td class="spec-value spec-highlight">200MP Quad</td>
-                        <td class="spec-value">50MP Triple</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-battery-full spec-icon"></i>Battery</td>
-                        <td class="spec-value">3274mAh</td>
-                        <td class="spec-value spec-highlight">5000mAh</td>
-                        <td class="spec-value">5050mAh</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-mobile-alt spec-icon"></i>Display</td>
-                        <td class="spec-value">6.1" OLED</td>
-                        <td class="spec-value spec-highlight">6.8" Dynamic AMOLED</td>
-                        <td class="spec-value">6.7" OLED</td>
-                    </tr>
-                    <tr>
-                        <td><i class="fas fa-shield-alt spec-icon"></i>Warranty</td>
-                        <td class="spec-value">1 Year</td>
-                        <td class="spec-value">1 Year</td>
-                        <td class="spec-value">1 Year</td>
-                    </tr>
-                </tbody>
-            </table>
+         <div class="container">
+        <div class="header">
+            <h1>Phone Comparison</h1>
+            <p>Compare the latest smartphones and find your perfect match</p>
         </div>
+
+        <div class="comparison-grid" id="phoneGrid">
+            <div class="phone-card animate-in" style="animation-delay: 0.1s">
+                <div class="phone-icon"></div>
+                <h2 class="phone-name">iPhone 15 Pro</h2>
+                <div class="rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">4.8/5</span>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-primary">Buy Now - $999</button>
+                    <button class="btn btn-secondary">View Details</button>
+                    <button class="btn btn-remove" onclick="removeCard(this)">✕ Remove</button>
+                </div>
+                <ul class="specs">
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #10b981;"></div>
+                            Price
+                        </span>
+                        <span class="spec-value">$999</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #3b82f6;"></div>
+                            Processor
+                        </span>
+                        <span class="spec-value">A17 Pro</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #8b5cf6;"></div>
+                            RAM
+                        </span>
+                        <span class="spec-value">8GB</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #f59e0b;"></div>
+                            Storage
+                        </span>
+                        <span class="spec-value">128GB - 1TB</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #ef4444;"></div>
+                            Main Camera
+                        </span>
+                        <span class="spec-value">48MP Triple</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #06b6d4;"></div>
+                            Battery
+                        </span>
+                        <span class="spec-value">3274mAh</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #84cc16;"></div>
+                            Display
+                        </span>
+                        <span class="spec-value">6.1" OLED</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #a855f7;"></div>
+                            Warranty
+                        </span>
+                        <span class="spec-value">1 Year</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="phone-card animate-in" style="animation-delay: 0.2s">
+                <div class="phone-icon"></div>
+                <h2 class="phone-name">Galaxy S24 Ultra</h2>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="rating-text">4.7/5</span>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-primary">Buy Now - $1,199</button>
+                    <button class="btn btn-secondary">View Details</button>
+                    <button class="btn btn-remove" onclick="removeCard(this)">✕ Remove</button>
+                </div>
+                <ul class="specs">
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #10b981;"></div>
+                            Price
+                        </span>
+                        <span class="spec-value">$1,199</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #3b82f6;"></div>
+                            Processor
+                        </span>
+                        <span class="spec-value">Snapdragon 8 Gen 3</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #8b5cf6;"></div>
+                            RAM
+                        </span>
+                        <span class="spec-value">12GB</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #f59e0b;"></div>
+                            Storage
+                        </span>
+                        <span class="spec-value">256GB - 1TB</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #ef4444;"></div>
+                            Main Camera
+                        </span>
+                        <span class="spec-value">200MP Quad</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #06b6d4;"></div>
+                            Battery
+                        </span>
+                        <span class="spec-value">5000mAh</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #84cc16;"></div>
+                            Display
+                        </span>
+                        <span class="spec-value">6.8" Dynamic AMOLED</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #a855f7;"></div>
+                            Warranty
+                        </span>
+                        <span class="spec-value">1 Year</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="phone-card animate-in" style="animation-delay: 0.3s">
+                <div class="phone-icon"></div>
+                <h2 class="phone-name">Pixel 8 Pro</h2>
+                <div class="rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="rating-text">4.5/5</span>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-primary">Buy Now - $899</button>
+                    <button class="btn btn-secondary">View Details</button>
+                    <button class="btn btn-remove" onclick="removeCard(this)">✕ Remove</button>
+                </div>
+                <ul class="specs">
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #10b981;"></div>
+                            Price
+                        </span>
+                        <span class="spec-value">$899</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #3b82f6;"></div>
+                            Processor
+                        </span>
+                        <span class="spec-value">Google Tensor G3</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #8b5cf6;"></div>
+                            RAM
+                        </span>
+                        <span class="spec-value">12GB</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #f59e0b;"></div>
+                            Storage
+                        </span>
+                        <span class="spec-value">128GB - 1TB</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #ef4444;"></div>
+                            Main Camera
+                        </span>
+                        <span class="spec-value">50MP Triple</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #06b6d4;"></div>
+                            Battery
+                        </span>
+                        <span class="spec-value">5050mAh</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #84cc16;"></div>
+                            Display
+                        </span>
+                        <span class="spec-value">6.7" OLED</span>
+                    </li>
+                    <li class="spec-item">
+                        <span class="spec-label">
+                            <div class="spec-icon" style="background: #a855f7;"></div>
+                            Warranty
+                        </span>
+                        <span class="spec-value">1 Year</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     </div>
 
     <!-- Summary Cards -->
